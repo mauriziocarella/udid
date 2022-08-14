@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+@layer base {
+    html {
+        font-family: 'Inter', sans-serif;
+        @apply pr-0 #{!important};
+    }
+    body {
+        @apply overflow-y-scroll overscroll-y-none;
+    }
+    html, body, #root {
+        @apply h-full;
+    }
+}
+
+@layer components {
+    h1 {
+        @apply font-medium text-2xl;
+    }
+
+    h2 {
+        @apply font-medium text-xl;
+    }
+
+    h3 {
+        @apply font-medium text-lg;
+    }
+
+    h4 {
+        @apply font-medium;
+    }
+
+    h5 {
+        @apply font-medium text-sm;
+    }
+
+    h6 {
+        @apply font-medium text-xs;
+    }
+
+    @keyframes rotate {
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+    @keyframes dash {
+        0% {
+            stroke-dasharray: 1, 200;
+            stroke-dashoffset: 0;
+        }
+        50% {
+            stroke-dasharray: 89, 200;
+            stroke-dashoffset: -35px;
+        }
+        100% {
+            stroke-dasharray: 89, 200;
+            stroke-dashoffset: -124px;
+        }
+    }
+
+    input {
+        &[type="checkbox"] {
+            &:checked {
+                @apply bg-blue-500 border-blue-500;
+                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e");
+            }
+
+            &:indeterminate, &.indeterminate, &[indeterminate] {
+                @apply bg-blue-500 border-blue-500;
+                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3e%3c/svg%3e");
+            }
+
+            &:disabled, &.disabled, &[disabled] {
+                @apply opacity-60 cursor-default;
+            }
+        }
+    }
+}
+
+@layer utilities {
+    .h-screen {
+        height: 100vh;
+        height: calc(var(--vh, 1vh) * 100);
+    }
+    .min-h-screen {
+        min-height: 100vh;
+        min-height: calc(var(--vh, 1vh) * 100);
+    }
+}

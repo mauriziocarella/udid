@@ -1,0 +1,28 @@
+<plist version="1.0">
+    <dict>
+        <key>PayloadContent</key>
+        <dict>
+            <key>URL</key>
+            <string>https://udid.mauriziocarella.it/api/callback</string>
+            <key>DeviceAttributes</key>
+            <array>
+                <string>UDID</string>
+                <string>PRODUCT</string>
+            </array>
+        </dict>
+        <key>PayloadOrganization</key>
+        <string>mauriziocarella.it</string>
+        <key>PayloadDisplayName</key>
+        <string>Profile Service</string>
+        <key>PayloadVersion</key>
+        <integer>1</integer>
+        <key>PayloadUUID</key>
+        <string>0ce8a9e6-0a04-11ed-861d-0242ac120002</string>
+        <key>PayloadIdentifier</key>
+        <string>udid.mauriziocarella.it</string>
+        <key>PayloadDescription</key>
+        <string/>
+        <key>PayloadType</key>
+        <string>Profile Service</string>
+    </dict>
+</plist>
