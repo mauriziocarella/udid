@@ -1,6 +1,8 @@
 {
 	"name": "uuid",
-	"version": "0.1.0",
+	"description": "NextJS application to get Apple device udid",
+	"license": "MIT",
+	"version": "1.0.0",
 	"private": true,
 	"scripts": {
 		"dev": "next dev",
