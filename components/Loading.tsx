@@ -2,15 +2,17 @@ import React, {useMemo} from 'react';
 import classNames from 'classnames';
 
 type LoadingIconProps = React.HTMLProps<HTMLDivElement> & {
-    size?: number;
-    stroke?: number;
-    color?: 'primary' | 'white'
+	size?: number;
+	stroke?: number;
+	color?: 'primary' | 'white';
 };
 export const LoadingIcon: React.VFC<LoadingIconProps> = ({className, size = 28, stroke = 3, ...props}) => {
 	const color = useMemo(() => {
-		switch(props.color) {
-			case 'primary': return 'border-primary/40 border-t-primary';
-			case 'white': return 'border-white/40 border-t-white';
+		switch (props.color) {
+			case 'primary':
+				return 'border-primary/40 border-t-primary';
+			case 'white':
+				return 'border-white/40 border-t-white';
 		}
 		return 'border-t-primary';
 	}, [props.color]);
@@ -24,11 +26,10 @@ export const LoadingIcon: React.VFC<LoadingIconProps> = ({className, size = 28, 
 	);
 };
 
-
 export type LoadingViewProps = {
-    fixed?: boolean;
-    color?: 'primary' | 'secondary' | 'white';
-}
+	fixed?: boolean;
+	color?: 'primary' | 'secondary' | 'white';
+};
 export const LoadingView = ({fixed, ...props}: LoadingViewProps) => {
 	const color = useMemo(() => {
 		switch (props.color) {
@@ -43,10 +44,11 @@ export const LoadingView = ({fixed, ...props}: LoadingViewProps) => {
 	}, [props.color]);
 
 	return (
-		<div className={classNames('flex flex-grow items-center justify-center', {
-			'fixed inset-0 bg-white/70': fixed,
-		})}>
-			<div className={classNames('block w-10 h-10 border-4 rounded-full animate-spin-bounce', color)}/>
+		<div
+			className={classNames('flex flex-grow items-center justify-center', {
+				'fixed inset-0 bg-white/70': fixed,
+			})}>
+			<div className={classNames('block w-10 h-10 border-4 rounded-full animate-spin-bounce', color)} />
 		</div>
 	);
 };

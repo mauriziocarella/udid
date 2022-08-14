@@ -9,7 +9,7 @@ const outerHeight = (el: HTMLElement | null) => {
 
 type CollapseProps = React.HTMLProps<HTMLDivElement> & {
 	open: boolean;
-}
+};
 export const Collapse = ({open, ...props}: CollapseProps) => {
 	const [height, setHeight] = useState(0);
 	const el = useRef<HTMLDivElement>(null);

@@ -23,7 +23,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 	});
 
 	const message = await client.sendAsync({
-		from: process.env.SMTP_USER,
+		text: '',
+		from: process.env.SMTP_USER || '',
 		to: email,
 		subject: 'Nuovo dispositivo Apple registrato',
 		attachment: [{data: html, alternative: true}],

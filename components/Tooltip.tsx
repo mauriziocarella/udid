@@ -7,24 +7,24 @@ import {usePopper} from 'react-popper';
 export type TooltipProps = React.HTMLAttributes<HTMLSpanElement> & {
 	text?: string;
 	disabled?: boolean;
-}
+};
 
 export const Tooltip = ({text, disabled, children, ...props}: TooltipProps) => {
 	const [referenceElement, setReferenceElement] = useState<HTMLSpanElement | null>(null);
 	const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null);
 	const [arrowElement, setArrowElement] = useState<HTMLDivElement | null>(null);
-	const { styles, attributes, ...popper } = usePopper(referenceElement, popperElement, {
+	const {styles, attributes, ...popper} = usePopper(referenceElement, popperElement, {
 		modifiers: [
 			{
 				name: 'offset',
 				options: {
-					offset: [0, 8]
-				}
+					offset: [0, 8],
+				},
 			},
 			{
 				name: 'arrow',
-				options: { element: arrowElement }
-			}
+				options: {element: arrowElement},
+			},
 		],
 		placement: 'top',
 	});
@@ -50,8 +50,7 @@ export const Tooltip = ({text, disabled, children, ...props}: TooltipProps) => {
 			resizeObserver = new ResizeObserver(update);
 
 			if (referenceElement) resizeObserver.observe(referenceElement);
-		}
-		catch (e) {}
+		} catch (e) {}
 
 		return () => {
 			referenceElement?.removeEventListener('mouseover', mouseover);
@@ -66,41 +65,43 @@ export const Tooltip = ({text, disabled, children, ...props}: TooltipProps) => {
 		};
 	}, [referenceElement, update]);
 
-	if (!text || disabled) return (
-		<>
-			{children}
-		</>
-	);
+	if (!text || disabled) return <>{children}</>;
 
 	return (
 		<>
 			<TooltipPortal>
-				<div ref={setPopperElement} style={styles.popper} {...attributes.popper} className={classNames('bg-neutral text-neutral-content rounded p-2 shadow-sm text-xs text-center max-w-[200px] transition-opacity pointer-events-none', visible ? 'opacity-100' : 'opacity-0')}>
+				<div
+					ref={setPopperElement}
+					style={styles.popper}
+					{...attributes.popper}
+					className={classNames(
+						'bg-neutral text-neutral-content rounded p-2 shadow-sm text-xs text-center max-w-[200px] transition-opacity pointer-events-none',
+						visible ? 'opacity-100' : 'opacity-0',
+					)}>
 					{text}
 
 					<div ref={setArrowElement} style={styles.arrow}>
 						<div className="h-4 translate-y-1/2">
-							<div className="mx-auto w-0 h-0 border-solid border-4 border-b-0 border-transparent border-t-neutral"/>
+							<div className="mx-auto w-0 h-0 border-solid border-4 border-b-0 border-transparent border-t-neutral" />
 						</div>
 					</div>
 				</div>
 			</TooltipPortal>
 
-			<span ref={setReferenceElement} {...props}>{children}</span>
+			<span ref={setReferenceElement} {...props}>
+				{children}
+			</span>
 		</>
 	);
 };
 
 type TooltipPortalProps = {
-	children?: React.HTMLProps<HTMLDivElement>['children'],
-}
+	children?: React.HTMLProps<HTMLDivElement>['children'];
+};
 export const TooltipPortal = ({children}: TooltipPortalProps) => {
 	const target = usePortal('tooltip');
 
-	return createPortal(
-		children,
-		target,
-	);
+	return createPortal(children, target);
 };
 
 // export const TooltipContainer = () => {

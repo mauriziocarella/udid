@@ -2,7 +2,6 @@ import React, {forwardRef, useEffect, useMemo, useState} from 'react';
 import classNames from 'classnames';
 import {Tooltip, TooltipProps} from './Tooltip';
 import {LoadingIcon} from './Loading';
-import {RouterLink} from './Link';
 
 export type ButtonHandler = {
 	loading(loading: ButtonProps['loading']): void;
@@ -19,7 +18,6 @@ export type ButtonProps = Omit<React.ComponentPropsWithoutRef<'button'>, 'onClic
 	tooltip?: TooltipProps['text'];
 	loading?: boolean;
 	block?: boolean;
-	to?: string;
 	onClick?(e: React.MouseEvent, button: ButtonHandler): void;
 };
 
@@ -116,44 +114,42 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 		}, [_loading]);
 
 		return (
-			<ButtonLink to={props.to}>
-				<Tooltip className={classNames(block && 'flex-grow')} text={props.tooltip}>
-					<button
-						ref={ref}
-						type="button"
-						className={classNames(
-							'inline-flex items-center justify-center rounded-md text-base outline-none transition-all duration-200',
-							colorClasses,
-							sizeClasses,
-							disabled || active === false ? 'opacity-60' : '',
-							disabled && 'pointer-events-none',
-							square && 'aspect-square p-0',
-							block && 'w-full',
-							className,
-						)}
-						{...props}
-						onClick={onClick}
-						disabled={disabled}>
-						{loading ? (
-							<>
-								<LoadingIcon size={20} className={classNames(label && 'mr-2')} color={outline ? 'primary' : 'white'} />
-							</>
-						) : (
-							<>
-								{icon && (
-									<span className={classNames((label || children) && 'mr-2')}>
-										{React.cloneElement(icon, {
-											className: classNames('h-5 w-5', icon.props.className),
-										})}
-									</span>
-								)}
-							</>
-						)}
-						{label}
-						{children}
-					</button>
-				</Tooltip>
-			</ButtonLink>
+			<Tooltip className={classNames(block && 'flex-grow')} text={props.tooltip}>
+				<button
+					ref={ref}
+					type="button"
+					className={classNames(
+						'inline-flex items-center justify-center rounded-md text-base outline-none transition-all duration-200',
+						colorClasses,
+						sizeClasses,
+						disabled || active === false ? 'opacity-60' : '',
+						disabled && 'pointer-events-none',
+						square && 'aspect-square p-0',
+						block && 'w-full',
+						className,
+					)}
+					{...props}
+					onClick={onClick}
+					disabled={disabled}>
+					{loading ? (
+						<>
+							<LoadingIcon size={20} className={classNames(label && 'mr-2')} color={outline ? 'primary' : 'white'} />
+						</>
+					) : (
+						<>
+							{icon && (
+								<span className={classNames((label || children) && 'mr-2')}>
+									{React.cloneElement(icon, {
+										className: classNames('h-5 w-5', icon.props.className),
+									})}
+								</span>
+							)}
+						</>
+					)}
+					{label}
+					{children}
+				</button>
+			</Tooltip>
 		);
 	},
 );
@@ -173,9 +169,3 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
 		);
 	},
 );
-
-const ButtonLink = ({to, children}: {to: ButtonProps['to']; children: JSX.Element}) => {
-	if (!to) return children;
-
-	return <RouterLink to={to}>{children}</RouterLink>;
-};

@@ -5,7 +5,7 @@ import {IconButton} from './Button';
 
 type ResponseFeedbackProps = React.HTMLProps<HTMLDivElement> & {
 	feedback: any;
-}
+};
 export const ResponseFeedback = ({feedback, className}: ResponseFeedbackProps) => {
 	const [open, setOpen] = useState(false);
 

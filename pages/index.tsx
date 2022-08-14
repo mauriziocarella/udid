@@ -14,7 +14,7 @@ const Home: NextPage = () => {
 		if (email) {
 			const url = new URL('/api/profile', window.location.href);
 
-			url.searchParams.set('email', email);
+			url.searchParams.set('email', String(email));
 
 			return url.toString();
 		}
@@ -26,7 +26,7 @@ const Home: NextPage = () => {
 		<div className="flex-grow flex items-center justify-center m-2">
 			<div className="flex-1 text-center m-2">
 				<div className="mb-4">
-					<h2>Ottieni l'UDID del tuo dispositivo Apple</h2>
+					<h2>Ottieni l&apos;UDID del tuo dispositivo Apple</h2>
 				</div>
 				<Card className="max-w-2xl mx-auto my-6 space-y-2">
 					<ul className="text-left pl-3 list-disc space-y-2 mb-6 leading-8">
